@@ -1,11 +1,53 @@
-import React from "react";
-import styles from "./svg.module.css";
+import React, {useEffect, useRef, useState} from "react";
+import styles from "./BurgerMenuSvg.module.css";
 
-const svgSprite = () => {
+const BurgerMenu = () => {
+
+    const node = useRef();
+
+    const [isMenuOpen, toggleMenu] = useState(false);
+
+    const useOnClickOutside = (ref, handler) => {
+        useEffect(() => {
+            const listener = event => {
+                if (!ref.current || ref.current.contains(event.target)) {
+                    return;
+                }
+                handler(event);
+            };
+            document.addEventListener('mousedown', listener);
+            return () => {
+                document.removeEventListener('mousedown', listener);
+            };
+        }, [ref, handler]);
+    };
+
+    function toggleMenuMode(event) {
+       if(event) event.preventDefault()
+        toggleMenu(!isMenuOpen)
+    }
+
+    useOnClickOutside(node, () => {
+        // Only if menu is open
+        if (isMenuOpen) {
+            toggleMenuMode();
+        }
+    });
     return (
-        <React.Fragment>
-            <div className={styles.tpl_hamburger} id="sandwichmenu">
+        <header ref={node}>
+            <div
+                className={isMenuOpen ? `${styles.hamburger + ' ' + styles.active}` : `${styles.hamburger}`}
+                id="hamburger"
+                onClick={toggleMenuMode}>
                 <svg viewBox="0 0 800 600">
+                    <defs>
+                        <linearGradient id="stripes"
+                                        x1="0" y1="0" x2="100%" y2="50%">
+                            <stop stopColor="hsl(45,100%,65%)" offset="0"/>
+                            <stop stopColor="hsl(320,100%,65%)" offset="50%"/>
+                            <stop stopColor="hsl(200,100%,60%)" offset="100%"/>
+                        </linearGradient>
+                    </defs>
                     <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
                           className={styles.top}/>
                     <path d="M300,320 L540,320" className={styles.middle}/>
@@ -14,10 +56,13 @@ const svgSprite = () => {
                           transform="translate(480, 320) scale(1, -1) translate(-480, -318) "/>
                 </svg>
             </div>
-            <div className={styles.js_menu}>
-               <span>Главная</span>
+            <div className={isMenuOpen ? `${styles.hamburgerMenu + ' ' + styles.active}` : `${styles.hamburgerMenu}`}
+                 onClick={toggleMenuMode}>
+                <div><a href="/">Главная</a></div>
+                <div><a href="/">Статьи</a></div>
+                <div><a href="/">О сайте</a></div>
             </div>
-        </React.Fragment>
+        </header>
     )
 }
-export default svgSprite
+export default BurgerMenu

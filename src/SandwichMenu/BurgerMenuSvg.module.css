@@ -1,32 +1,67 @@
-#sandwichmenu {
-    margin: 5px 0 0 0;  text-align: center;
+#hamburger {
+    margin: 5px 0 0 0;
+    text-align: center;
 }
-.tpl_hamburger svg {height: 40px;width: 60px;}
-.tpl_hamburger svg {cursor: pointer;  height: 50px;  transform: translate3d(0px, 0px, 0px);  width: 80px;}
-svg:not(:root) {overflow: hidden;}
-.tpl_hamburger path.top, .tpl_hamburger path.bottom {
+
+.hamburger svg {
+    height: 40px;
+    width: 60px;
+}
+
+.hamburger svg {
+    cursor: pointer;
+    height: 50px;
+    transform: translate3d(0px, 0px, 0px);
+    width: 80px;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.hamburger path.top, .hamburger path.bottom {
     stroke-dasharray: 240px, 950px;
 }
-.tpl_hamburger path {
-    fill: none; stroke: #000; stroke-dashoffset: 0; stroke-linecap: round; stroke-width: 40px;
-    transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25) 0s, stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25) 0s;
-}
-.tpl_hamburger path.middle {stroke-dasharray: 240px, 240px;}
-.tpl_hamburger path {
-    fill: none; stroke: #000; stroke-dashoffset: 0; stroke-linecap: round; stroke-width: 40px;
+
+.hamburger path {
+    fill: none;
+    stroke: #000;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    stroke-width: 40px;
     transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25) 0s, stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25) 0s;
 }
 
-.tpl_hamburger.active path.top, .tpl_hamburger.active path.bottom {
+.hamburger path.middle {
+    stroke-dasharray: 240px, 240px;
+}
+
+.hamburger path {
+    fill: none;
+    stroke: #000;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    stroke-width: 40px;
+    transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25) 0s, stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25) 0s;
+}
+
+.hamburger.active path.top, .hamburger.active path.bottom {
     stroke-dashoffset: -650px;
 }
-.tpl_hamburger path.top, .tpl_hamburger path.bottom {
+
+.hamburger path.top, .hamburger path.bottom {
     stroke-dasharray: 240px, 950px;
 }
-.tpl_hamburger.active path.middle {
+
+.hamburger.active path.middle {
     stroke-dasharray: 1px, 220px;
     stroke-dashoffset: -115px;
 }
 
-.js_menu {display: none;}
-.js_menu.active {display: block;}
+.hamburgerMenu {
+    display: none;
+}
+
+.hamburgerMenu.active {
+    display: block;
+}
